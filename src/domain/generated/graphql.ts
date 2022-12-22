@@ -13,30 +13,16 @@ export type Scalars = {
   Float: number;
 };
 
-export type AdviceLanguage = {
-  language?: InputMaybe<Language>;
-};
-
 export type AdviceSlipResult = {
   __typename?: 'AdviceSlipResult';
   advice?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['Int']>;
 };
 
-export enum Language {
-  Br = 'BR',
-  Us = 'US'
-}
-
 export type Query = {
   __typename?: 'Query';
   _service: _Service;
   getAdviceSlip?: Maybe<AdviceSlipResult>;
-};
-
-
-export type QueryGetAdviceSlipArgs = {
-  input?: InputMaybe<AdviceLanguage>;
 };
 
 export type _Service = {
@@ -114,11 +100,9 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
-  AdviceLanguage: AdviceLanguage;
   AdviceSlipResult: ResolverTypeWrapper<AdviceSlipResult>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
   Int: ResolverTypeWrapper<Scalars['Int']>;
-  Language: Language;
   Query: ResolverTypeWrapper<{}>;
   String: ResolverTypeWrapper<Scalars['String']>;
   _Service: ResolverTypeWrapper<_Service>;
@@ -126,7 +110,6 @@ export type ResolversTypes = {
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
-  AdviceLanguage: AdviceLanguage;
   AdviceSlipResult: AdviceSlipResult;
   Boolean: Scalars['Boolean'];
   Int: Scalars['Int'];
@@ -169,7 +152,7 @@ export type AdviceSlipResultResolvers<ContextType = any, ParentType extends Reso
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   _service?: Resolver<ResolversTypes['_Service'], ParentType, ContextType>;
-  getAdviceSlip?: Resolver<Maybe<ResolversTypes['AdviceSlipResult']>, ParentType, ContextType, Partial<QueryGetAdviceSlipArgs>>;
+  getAdviceSlip?: Resolver<Maybe<ResolversTypes['AdviceSlipResult']>, ParentType, ContextType>;
 };
 
 export type _ServiceResolvers<ContextType = any, ParentType extends ResolversParentTypes['_Service'] = ResolversParentTypes['_Service']> = {
