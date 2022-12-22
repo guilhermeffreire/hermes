@@ -1,9 +1,11 @@
 import axios, { AxiosResponse } from "axios";
 
-export default class Api {
+class Api {
   async getAdviceSlip(): Promise<AxiosResponse> {
     const apiResponse = await axios.get("https://api.adviceslip.com/advice");
 
-    return apiResponse;
+    return apiResponse.data;
   }
 }
+
+export default Api;

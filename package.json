@@ -6,13 +6,15 @@
   "author": "Guilherme Freire",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon"
+    "start": "nodemon",
+    "codegen": "graphql-codegen --config codegen.yml"
   },
   "dependencies": {
     "@apollo/federation": "^0.38.1",
     "apollo-server": "^3.11.1",
     "axios": "^1.2.1",
     "graphql": "^16.6.0",
+    "lodash": "^4.17.21",
     "typed-inject": "^3.0.1"
   },
   "devDependencies": {

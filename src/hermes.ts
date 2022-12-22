@@ -1,8 +1,11 @@
 import { ApolloServer, gql } from "apollo-server";
 import { GraphQLSchema } from "graphql";
 import { buildSubgraphSchema } from "@apollo/federation";
+import lodash from "lodash";
 
 import AdviceSlipSchema from "@domain/schemas/advice/advice-slip-schema";
+import AdviceSlipResolver from "@resolvers/advice/advice-slip-resolver";
+import dependenciesContainer from "@infrastructure/DI/dependencies-container";
 
 const loadSchema = () => {
   return buildSubgraphSchema([
@@ -10,12 +13,21 @@ const loadSchema = () => {
       typeDefs: gql`
         ${AdviceSlipSchema}
       `,
+      resolvers: lodash.merge(AdviceSlipResolver),
     },
   ]);
 };
 
 const buildServer = (schema: GraphQLSchema) => {
-  return new ApolloServer({ schema: schema });
+  return new ApolloServer({
+    schema: schema,
+    context: ({}) => ({
+      AdviceSlipService:
+        dependenciesContainer.services.AdviceSlipService.resolve(
+          "adviceSlipService"
+        ),
+    }),
+  });
 };
 
 const runServer = async () => {
